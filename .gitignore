@@ -1,0 +1,9 @@
+.DS_Store
+.gradle
+
+/spring-*/build
+
+# IDEA artifacts and output dirs
+*.iml
+.idea
+out
