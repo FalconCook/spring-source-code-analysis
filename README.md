@@ -3,15 +3,16 @@
 本人以《Spring源码深度解析》第二版为蓝本，参考了大大小小的源码解析博文，不断跟踪调试，记录下自己的Spring源码学习心得。
 - 源码分析分为IoC、AOP等几大模块
 - 源码标注了中文注释，参考博文以后给出。
+- 剔除了测试代码，只保留必要部分
 
 # 源码分析前的工作
 
-操作系统：Mac os
-源码下载：spring的GitHub上克隆最新的版本
-编译工具：本地的gradle 4.10
-开发工具：intelliJ IDEA 2018
-JDK：1.8
-Spring版本：5.0.20.RELEASE
+	操作系统：Mac os
+	源码下载：spring的GitHub上克隆最新的版本
+	编译工具：本地的gradle 4.10
+	开发工具：intelliJ IDEA 2018
+	JDK：1.8
+	Spring版本：5.0.20.RELEASE
 
 遇到诸多问题，百度解决，以上版本宜新不宜旧。
 

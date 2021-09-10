@@ -125,13 +125,14 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			closeBeanFactory();
 		}
 		try {
-			// 初始化一个 DefaultListableBeanFactory，为什么用这个，我们马上说。
+			// 创建 DefaultListableBeanFactory
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
-			// 用于 BeanFactory 的序列化，我想大部分人应该都用不到
+			// 为了序列化指定id, 如果需要的话, 让这个BeanFactory从id序列化到BeanFactory对象
 			beanFactory.setSerializationId(getId());
-			// 设置工厂的属性：是否允许BeanDefinition覆盖和是否允许循环依赖
+			// 定制beanFactory, 设置相关属性, 包括是否允许覆盖同名称的不同定义的对象以及循环依赖以及
+			// 设置@Autowire和@Qualifier 注解解析器QualifierAnnotationAutoWireCandidateResolver
 			customizeBeanFactory(beanFactory);
-			// 加载 Bean 到 BeanFactory 中
+			// 初始化DocumentReader. 并进行XML文件读取及解析
 			loadBeanDefinitions(beanFactory);
 			this.beanFactory = beanFactory;
 		}
@@ -218,12 +219,14 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 */
 	//通过当前上下文来自定义内部bean工厂
 	protected void customizeBeanFactory(DefaultListableBeanFactory beanFactory) {
+		// 如果属性allowBeanDefinitionOverriding不为空, 设置给beanFactory对象相应属性,
+		// 此属性的含义: 是否允许覆盖同名称的不同定义的对象
 		if (this.allowBeanDefinitionOverriding != null) {
-			// 是否允许 Bean 定义覆盖
 			beanFactory.setAllowBeanDefinitionOverriding(this.allowBeanDefinitionOverriding);
 		}
+		// 如果属性allowCircularReferences不为空, 设置给beanFactory对象相应的属性,
+		// 此属性的含义: 是否允许bean之间存在循环依赖
 		if (this.allowCircularReferences != null) {
-			// 是否允许 Bean 间的循环依赖
 			beanFactory.setAllowCircularReferences(this.allowCircularReferences);
 		}
 	}
