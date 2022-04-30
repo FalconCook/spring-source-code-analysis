@@ -2,7 +2,7 @@
 .gradle
 
 /spring-framework/spring-*/build
-buildSrc/build
+/spring-framework/buildSrc/build
 
 # IDEA artifacts and output dirs
 *.iml
