@@ -224,8 +224,17 @@ public class AnnotatedBeanDefinitionReader {
 		String beanName = (name != null ? name : this.beanNameGenerator.generateBeanName(abd, this.registry));
 
 		AnnotationConfigUtils.processCommonDefinitionAnnotations(abd);
+		/**
+		 * 如果在向容器注册注解bean定义时，使用了额外的限定符，注解则解析
+		 * 关于qualifiers和primary，主要涉及到spring的自动装配
+		 * 这里需要注意的
+		 * byName、qualifier这个变量是Annotation类型的数组，里面存不仅仅是Qualifier注解
+		 * 理论上里面存的是一切注解，所以可以看到下面的代码spring去循环了这个数组
+		 * 然后一次判断了注解当中是否包含了Primary、Lazy
+		 */
 		if (qualifiers != null) {
 			for (Class<? extends Annotation> qualifier : qualifiers) {
+				// 如果配置了Primary注解，如果加了则作为首选
 				if (Primary.class == qualifier) {
 					abd.setPrimary(true);
 				}

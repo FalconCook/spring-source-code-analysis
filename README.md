@@ -1,11 +1,9 @@
 ## 个人的Spring源码学习笔记
 
-本人以《Spring源码深度解析》第二版为蓝本，参考了大大小小的源码解析博文，不断跟踪调试，记录下自己的Spring源码学习心得。
 - 源码分析分为IoC、AOP等几大模块
-- 源码标注了中文注释，参考博文以后给出。
 - 剔除了测试代码，只保留必要部分
 
-# 源码分析前的工作
+## 源码分析前的工作
 
 	操作系统：Mac os
 	源码下载：spring的GitHub上克隆最新的版本
@@ -14,9 +12,7 @@
 	JDK：1.8
 	Spring版本：5.0.20.RELEASE
 
-遇到诸多问题，百度解决，以上版本宜新不宜旧。
-
-# Spring Ioc
+## Spring Ioc
 
 Resource相关类 封装 配置文件 -> XmlBeanDefinitionReader 读取
 Resource相关类 封装 配置文件 -> XmlBeanFactory构造方法 ->this.reader.loadBeanDefinitions(resource) 才是真正实现
@@ -45,7 +41,9 @@ BeanDefinitionParserDelegate#parseBeanDefinitionAttributes() bean的各种属性
 
 
 
-# 其他
+## 其他
+
+build.gradle中的gradleVersion = "4.4.1"，记录了gradle版本
 
 方法 XmlValidationModeDetector#detectValidationMode()
 while continue break
@@ -77,3 +75,6 @@ private ConstructorArgumentValues constructorArgumentValues;
 
 int类型的定义
 private int role = BeanDefinition.ROLE_APPLICATION;
+
+## 参考资料
+https://www.bilibili.com/video/BV1Fh411Z7kJ

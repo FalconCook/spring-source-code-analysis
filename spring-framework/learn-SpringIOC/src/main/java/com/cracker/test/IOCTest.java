@@ -1,13 +1,12 @@
 package com.cracker.test;
 
-import java.util.List;
-import java.util.Map;
-
+import com.cracker.app.AppConfig;
+import com.cracker.bean.IndexDao;
+import com.cracker.bean.Person;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import com.cracker.bean.Person;
 
 public class IOCTest {
 	
@@ -21,4 +20,11 @@ public class IOCTest {
 
 	}
 
+	@Test
+	public void test2() {
+		AnnotationConfigApplicationContext annotationConfigApplicationContext =
+				new AnnotationConfigApplicationContext(AppConfig.class);
+		IndexDao dao = annotationConfigApplicationContext.getBean(IndexDao.class);
+		dao.query();
+	}
 }
